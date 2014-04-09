@@ -96,3 +96,20 @@
         clear:both !important;
     }
 }
+/*
+ * FLOATCONTAINER
+ */
+    .row:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+    * html .row {
+    zoom: 1;
+}
+    *:first-child+html .row {
+    zoom: 1;
+}
