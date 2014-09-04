@@ -36,54 +36,58 @@ $useMargin: 1%;
 					margin-left: 0;
 					clear: left;
 				}
+			}
 
-				@media screen and (max-width:900px){
-					@if $i > 3 {
-						@include theWidth(3);
-						margin: $useMargin;
-						clear:none;
+			&:not(.no-break){
+				> .column{
+					@media screen and (max-width:900px){
+						@if $i > 3 {
+							@include theWidth(3);
+							margin: $useMargin;
+							clear:none;
 
-						&:nth-child(3n){
-							margin-right: 0;
-							margin-left: $useMargin;
-							clear: none;
-						}
+							&:nth-child(3n){
+								margin-right: 0;
+								margin-left: $useMargin;
+								clear: none;
+							}
 
-						&:first-child,
-						&:nth-child(3n + 1){
-							margin-left: 0;
-							margin-right: $useMargin;
-							clear: left;
-						}
-					}
-				}
-
-				@media screen and (max-width:750px){
-					@if $i > 2 {
-						@include theWidth(2);
-						margin: $useMargin;
-						clear:none;
-
-						&:nth-child(2n){
-							margin-right: 0;
-							margin-left: $useMargin;
-							clear: none;
-						}
-
-						&:first-child,
-						&:nth-child(2n + 1){
-							margin-left: 0;
-							margin-right: $useMargin;
-							clear: left;
+							&:first-child,
+							&:nth-child(3n + 1){
+								margin-left: 0;
+								margin-right: $useMargin;
+								clear: left;
+							}
 						}
 					}
-				}
 
-				@media screen and (max-width:550px){
-					width: 100%;
-					float: none;
-					margin: $useMargin 0% $useMargin 0% !important;
-					clear: both !important
+					@media screen and (max-width:750px){
+						@if $i > 2 {
+							@include theWidth(2);
+							margin: $useMargin;
+							clear:none;
+
+							&:nth-child(2n){
+								margin-right: 0;
+								margin-left: $useMargin;
+								clear: none;
+							}
+
+							&:first-child,
+							&:nth-child(2n + 1){
+								margin-left: 0;
+								margin-right: $useMargin;
+								clear: left;
+							}
+						}
+					}
+
+					@media screen and (max-width:550px){
+						width: 100%;
+						float: none;
+						margin: $useMargin 0% $useMargin 0% !important;
+						clear: both !important
+					}
 				}
 			}
 		}
