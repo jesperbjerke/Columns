@@ -11,7 +11,7 @@ Options
   * _Sets the default margin to use around columns_
 * @include makeColumns($rowClass, $countClass, $columnClass)
   * _create rows and columns from custom classes_
-  * _does not support extra classes like .no-break .no-margin etc_
+  * _does not support extra classes like .no-break .no-margin .colspan-(int) etc_
 
 ### Row classes:
 * .row
