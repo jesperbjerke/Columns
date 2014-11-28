@@ -29,20 +29,27 @@ $useMargin: 0.5%;
 				float: left;
 				position: relative;
 				@include theWidth($i);
-
-				&.last-in-row,
+				
 				&:nth-child(#{$i}n),
-			&:last-of-type{
-				margin-right: 0;
+				&:last-of-type{
+					margin-right: 0;
+				}
+			
+				&.last-in-row{
+					margin-right: 0;
+				}
+			
+				&:nth-child(#{$i}n + 1),
+				&:first-of-type{
+					margin-left: 0;
+					clear: left;
+				}
+		
+				&.first-in-row{
+					margin-left: 0;
+					clear: left;
+				}
 			}
-
-			&.first-in-row,
-			&:nth-child(#{$i}n + 1),
-		&:first-of-type{
-			margin-left: 0;
-			clear: left;
-		}
-	}
 
 	&:not(.no-break){
 		> .column{
@@ -161,14 +168,22 @@ $useMargin: 0.5%;
 					position: relative;
 					@include theWidth($i);
 
-					&.last-in-row,
-					&:nth-child(#{$i}n){
-						margin-right: 0;
-					}
+					&:nth-child(#{$i}n),
+				&:last-of-type{
+					margin-right: 0;
+				}
 
-				&.first-in-row,
+				&.last-in-row{
+					margin-right: 0;
+				}
+
 				&:nth-child(#{$i}n + 1),
 			&:first-of-type{
+				margin-left: 0;
+				clear: left;
+			}
+
+			&.first-in-row{
 				margin-left: 0;
 				clear: left;
 			}
