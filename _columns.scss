@@ -30,7 +30,7 @@ $useMargin: 0.5%;
 				position: relative;
 				@include theWidth($i);
 				
-				&:nth-child(#{$i}n) {
+				&:nth-child(#{$i}n){
 					margin-right: 0;
 				}
 			
@@ -38,7 +38,7 @@ $useMargin: 0.5%;
 					margin-right: 0;
 				}
 			
-				&:nth-child(#{$i}n + 1) {
+				&:nth-child(#{$i}n + 1){
 					margin-left: 0;
 					clear: left;
 				}
@@ -72,7 +72,7 @@ $useMargin: 0.5%;
 				}
 			}
 
-			@media screen and (max-width:$tablets){
+			@media screen and (max-width:750px){
 				@if $i > 2 {
 					@include theWidth(2);
 					margin: $useMargin;
@@ -93,7 +93,7 @@ $useMargin: 0.5%;
 				}
 			}
 
-			@media screen and (max-width:$phones){
+			@media screen and (max-width:550px){
 				width: 100%;
 				float: none;
 				margin: $useMargin 0% $useMargin 0% !important;
@@ -127,7 +127,7 @@ $useMargin: 0.5%;
 				}
 			}
 
-			@media screen and (max-width:$tablets){
+			@media screen and (max-width:750px){
 				@if $i > 2 {
 					@include theWidth(2, 0);
 					margin: 0;
@@ -143,7 +143,7 @@ $useMargin: 0.5%;
 				}
 			}
 
-			@media screen and (max-width:$phones){
+			@media screen and (max-width:550px){
 				width: 100%;
 				margin: 0% 0% 0% 0% !important;
 			}
@@ -166,78 +166,76 @@ $useMargin: 0.5%;
 					position: relative;
 					@include theWidth($i);
 
-					&:nth-child(#{$i}n),
-				&:last-of-type{
-					margin-right: 0;
-				}
-
-				&.last-in-row{
-					margin-right: 0;
-				}
-
-				&:nth-child(#{$i}n + 1),
-			&:first-of-type{
-				margin-left: 0;
-				clear: left;
-			}
-
-			&.first-in-row{
-				margin-left: 0;
-				clear: left;
-			}
-
-			@media screen and (max-width:900px){
-				@if $i > 3 {
-					@include theWidth(3);
-					margin: $useMargin;
-					clear:none;
-
-					&:nth-child(3n){
+					&:nth-child(#{$i}n){
 						margin-right: 0;
-						margin-left: $useMargin;
-						clear: none;
 					}
 
-					&:first-child,
-					&:nth-child(3n + 1){
+					&.last-in-row{
+						margin-right: 0;
+					}
+
+					&:nth-child(#{$i}n + 1){
 						margin-left: 0;
-						margin-right: $useMargin;
 						clear: left;
 					}
-				}
-			}
 
-			@media screen and (max-width:$tablets){
-				@if $i > 2 {
-					@include theWidth(2);
-					margin: $useMargin;
-					clear:none;
-
-					&:nth-child(2n){
-						margin-right: 0;
-						margin-left: $useMargin;
-						clear: none;
-					}
-
-					&:first-child,
-					&:nth-child(2n + 1){
+					&.first-in-row{
 						margin-left: 0;
-						margin-right: $useMargin;
 						clear: left;
 					}
-				}
-			}
 
-			@media screen and (max-width:$phones){
-				width: 100%;
-				float: none;
-				margin: $useMargin 0% $useMargin 0% !important;
-				clear: both !important
+					@media screen and (max-width:900px){
+						@if $i > 3 {
+							@include theWidth(3);
+							margin: $useMargin;
+							clear:none;
+
+							&:nth-child(3n){
+								margin-right: 0;
+								margin-left: $useMargin;
+								clear: none;
+							}
+
+							&:first-child,
+							&:nth-child(3n + 1){
+								margin-left: 0;
+								margin-right: $useMargin;
+								clear: left;
+							}
+						}
+					}
+
+					@media screen and (max-width:750px){
+						@if $i > 2 {
+							@include theWidth(2);
+							margin: $useMargin;
+							clear:none;
+
+							&:nth-child(2n){
+								margin-right: 0;
+								margin-left: $useMargin;
+								clear: none;
+							}
+
+							&:first-child,
+							&:nth-child(2n + 1){
+								margin-left: 0;
+								margin-right: $useMargin;
+								clear: left;
+							}
+						}
+					}
+
+					@media screen and (max-width:550px){
+						width: 100%;
+						float: none;
+						margin: $useMargin 0% $useMargin 0% !important;
+						clear: both !important
+					}
+				}
 			}
 		}
 	}
-}
-}
 }
 
 /*
