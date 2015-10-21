@@ -1,6 +1,4 @@
-$useMargin: 0.5%;
-
-@mixin theWidth($columns, $margin: $useMargin){
+@mixin theWidth($columns, $margin: $column_margin){
 
 	$totalMargin: ($margin * $columns) * 2;
 	$outers: $margin * 2;
@@ -20,11 +18,20 @@ $useMargin: 0.5%;
 @for $i from 2 through 10 {
 
 	.row{
-
 		&.count-#{$i}{
 
+			&[data-flex="true"]{
+				display: flex;
+				align-items: stretch;
+				flex-wrap: wrap;
+
+				> .column{
+					display: inline-flex !important;
+				}
+			}
+
 			> .column{
-				margin: $useMargin;
+				margin: $column_margin;
 				display: inline-block;
 				float: left;
 				position: relative;
@@ -49,108 +56,170 @@ $useMargin: 0.5%;
 				}
 			}
 
-	&:not(.no-break){
-		> .column{
-			@media screen and (max-width:900px){
-				@if $i > 3 {
-					@include theWidth(3);
-					margin: $useMargin;
-					clear:none;
+			&:not(.no-break){
+				@media screen and (max-width:900px){
+					@if $i > 4 {
+						> .column{
+							@include theWidth(4);
+							margin: $column_margin;
+							clear:none;
 
-					&:nth-child(3n){
-						margin-right: 0;
-						margin-left: $useMargin;
-						clear: none;
+							&:nth-child(4n){
+								margin-right: 0;
+								margin-left: $column_margin;
+								clear: none;
+							}
+
+							&:first-child,
+							&:nth-child(4n + 1){
+								margin-left: 0;
+								margin-right: $column_margin;
+								clear: left;
+							}
+						}
 					}
+				}
 
-					&:first-child,
-					&:nth-child(3n + 1){
-						margin-left: 0;
-						margin-right: $useMargin;
-						clear: left;
+				@media screen and (max-width:900px){
+					@if $i > 3 {
+						&:not([data-min-cols^="1111"]){
+							> .column{
+								@include theWidth(3);
+								margin: $column_margin;
+								clear:none;
+
+								&:nth-child(3n){
+									margin-right: 0;
+									margin-left: $column_margin;
+									clear: none;
+								}
+
+								&:first-child,
+								&:nth-child(3n + 1){
+									margin-left: 0;
+									margin-right: $column_margin;
+									clear: left;
+								}
+							}
+						}
+					}
+				}
+
+				@media screen and (max-width:750px){
+					@if $i > 2 {
+						&:not([data-min-cols^="111"]){
+							> .column{
+								@include theWidth(2);
+								margin: $column_margin;
+								clear:none;
+
+								&:nth-child(2n){
+									margin-right: 0;
+									margin-left: $column_margin;
+									clear: none;
+								}
+
+								&:first-child,
+								&:nth-child(2n + 1){
+									margin-left: 0;
+									margin-right: $column_margin;
+									clear: left;
+								}
+							}
+						}
+					}
+				}
+
+				@media screen and (max-width:550px){
+					&:not([data-min-cols^="11"]){
+						> .column{
+							width: 100%;
+							float: none;
+							margin: $column_margin 0% $column_margin 0% !important;
+							clear: both !important;
+						}
 					}
 				}
 			}
+		}
 
-			@media screen and (max-width:750px){
-				@if $i > 2 {
-					@include theWidth(2);
-					margin: $useMargin;
-					clear:none;
+		&.no-margin.count-#{$i}{
 
-					&:nth-child(2n){
-						margin-right: 0;
-						margin-left: $useMargin;
-						clear: none;
-					}
-
-					&:first-child,
-					&:nth-child(2n + 1){
-						margin-left: 0;
-						margin-right: $useMargin;
-						clear: left;
-					}
-				}
+			> .column{
+				margin: 0;
+				@include theWidth($i, 0);
 			}
 
-			@media screen and (max-width:550px){
-				width: 100%;
-				float: none;
-				margin: $useMargin 0% $useMargin 0% !important;
-				clear: both !important
+			&:not(.no-break){
+				@media screen and (max-width:900px){
+					@if $i > 4 {
+						> .column{
+							@include theWidth(4, 0);
+							margin: 0;
+
+							&:nth-child(4n){
+								margin-left: 0;
+							}
+
+							&:first-child,
+							&:nth-child(4n + 1){
+								margin-right: 0;
+							}
+						}
+					}
+				}
+
+				@media screen and (max-width:900px){
+					@if $i > 3 {
+						&:not([data-min-cols^="1111"]){
+							> .column{
+								@include theWidth(3, 0);
+								margin: 0;
+
+								&:nth-child(3n){
+									margin-left: 0;
+								}
+
+								&:first-child,
+								&:nth-child(3n + 1){
+									margin-right: 0;
+								}
+							}
+						}
+					}
+				}
+
+				@media screen and (max-width:750px){
+					@if $i > 2 {
+						&:not([data-min-cols^="111"]){
+							> .column{
+								@include theWidth(2, 0);
+								margin: 0;
+
+								&:nth-child(2n){
+									margin-left: 0;
+								}
+
+								&:first-child,
+								&:nth-child(2n + 1){
+									margin-right: 0;
+								}
+							}
+						}
+					}
+				}
+
+				@media screen and (max-width:550px){
+					&:not([data-min-cols^="11"]){
+						> .column{
+							width: 100%;
+							margin: 0% 0% 0% 0% !important;
+						}
+					}
+				}
 			}
 		}
 	}
-}
-
-&.no-margin.count-#{$i}{
-
-	> .column{
-		margin: 0;
-		@include theWidth($i, 0);
-	}
-	&:not(.no-break){
-		> .column{
-			@media screen and (max-width:900px){
-				@if $i > 3 {
-					@include theWidth(3, 0);
-					margin: 0;
-
-					&:nth-child(3n){
-						margin-left: 0;
-					}
-
-					&:first-child,
-					&:nth-child(3n + 1){
-						margin-right: 0;
-					}
-				}
-			}
-
-			@media screen and (max-width:750px){
-				@if $i > 2 {
-					@include theWidth(2, 0);
-					margin: 0;
-
-					&:nth-child(2n){
-						margin-left: 0;
-					}
-
-					&:first-child,
-					&:nth-child(2n + 1){
-						margin-right: 0;
-					}
-				}
-			}
-
-			@media screen and (max-width:550px){
-				width: 100%;
-				margin: 0% 0% 0% 0% !important;
-			}
-		}
-	}
-}
-}
 }
 
 @mixin makeColumns($rowClass, $countClass, $columnClass){
@@ -160,7 +229,7 @@ $useMargin: 0.5%;
 			&#{$countClass}#{$i}{
 
 				> #{$columnClass}{
-					margin: $useMargin;
+					margin: $column_margin;
 					display: inline-block;
 					float: left;
 					position: relative;
@@ -187,19 +256,19 @@ $useMargin: 0.5%;
 					@media screen and (max-width:900px){
 						@if $i > 3 {
 							@include theWidth(3);
-							margin: $useMargin;
+							margin: $column_margin;
 							clear:none;
 
 							&:nth-child(3n){
 								margin-right: 0;
-								margin-left: $useMargin;
+								margin-left: $column_margin;
 								clear: none;
 							}
 
 							&:first-child,
 							&:nth-child(3n + 1){
 								margin-left: 0;
-								margin-right: $useMargin;
+								margin-right: $column_margin;
 								clear: left;
 							}
 						}
@@ -208,19 +277,19 @@ $useMargin: 0.5%;
 					@media screen and (max-width:750px){
 						@if $i > 2 {
 							@include theWidth(2);
-							margin: $useMargin;
+							margin: $column_margin;
 							clear:none;
 
 							&:nth-child(2n){
 								margin-right: 0;
-								margin-left: $useMargin;
+								margin-left: $column_margin;
 								clear: none;
 							}
 
 							&:first-child,
 							&:nth-child(2n + 1){
 								margin-left: 0;
-								margin-right: $useMargin;
+								margin-right: $column_margin;
 								clear: left;
 							}
 						}
@@ -229,7 +298,7 @@ $useMargin: 0.5%;
 					@media screen and (max-width:550px){
 						width: 100%;
 						float: none;
-						margin: $useMargin 0% $useMargin 0% !important;
+						margin: $column_margin 0% $column_margin 0% !important;
 						clear: both !important
 					}
 				}
