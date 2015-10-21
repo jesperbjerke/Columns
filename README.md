@@ -23,6 +23,12 @@ Options
 * .no-margin
   * _will overide the $useMargin variable and remove all margins_
 
+### Row options
+* data-min-cols="{1 * number of columns}"
+  * _This option can disable breaking if less than specified. Defined by adding a 1 per column number. So if row has data-min-cols="111", the row wont break into less than 3 columns in row._
+* data-flex="{bool}"
+  * _Defines if row should use flexbox properties_
+
 ### Column classes:
 * .column
   * _Defines the column element inside a row_
