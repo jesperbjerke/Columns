@@ -13,314 +13,244 @@
 			}
 		}
 	}
+
 }
 
-@for $i from 2 through 10 {
+@mixin make_columns($column_class, $nr_of_columns, $insert_clear: true, $margin: $column_margin){
 
-	.row{
-		&.count-#{$i}{
+	&[data-flex="true"]{
+		display: flex;
+		align-items: stretch;
+		flex-wrap: wrap;
+	}
 
-			&[data-flex="true"]{
-				display: flex;
-				align-items: stretch;
-				flex-wrap: wrap;
+	> .#{$column_class}{
+		margin: $margin;
+		display: inline-block;
+		float: left;
+		position: relative;
+		@include theWidth($nr_of_columns, $margin);
 
-				> .column{
-					display: inline-flex !important;
+		&:nth-child(#{$nr_of_columns}n){
+			margin-right: 0;
+		}
+
+		&.last-in-row{
+			margin-right: 0;
+		}
+
+		&:nth-child(#{$nr_of_columns}n + 1){
+			margin-left: 0;
+			clear: left;
+		}
+
+		&.first-in-row{
+			margin-left: 0;
+			clear: left;
+		}
+	}
+
+	&:not(.no-break){
+		@media screen and (max-width:900px){
+			@if $nr_of_columns > 4 {
+				> .#{$column_class}{
+					@include theWidth(4, $margin);
+					margin: $margin;
+					clear:none;
+
+					&:nth-child(4n){
+						margin-right: 0;
+						margin-left: $margin;
+						clear: none;
+					}
+
+					&:first-child,
+					&:nth-child(4n + 1){
+						margin-left: 0;
+						margin-right: $margin;
+						clear: left;
+					}
 				}
 			}
+		}
 
-			> .column{
-				margin: $column_margin;
-				display: inline-block;
-				float: left;
-				position: relative;
-				@include theWidth($i);
-				
-				&:nth-child(#{$i}n){
-					margin-right: 0;
-				}
-			
-				&.last-in-row{
-					margin-right: 0;
-				}
-			
-				&:nth-child(#{$i}n + 1){
-					margin-left: 0;
-					clear: left;
-				}
-		
-				&.first-in-row{
-					margin-left: 0;
-					clear: left;
-				}
-			}
+		@media screen and (max-width:900px){
+			@if $nr_of_columns > 3 {
+				&:not([data-min-cols^="1111"]){
+					> .#{$column_class}{
+						@include theWidth(3, $margin);
+						margin: $margin;
+						clear:none;
 
-			&:not(.no-break){
-				@media screen and (max-width:900px){
-					@if $i > 4 {
-						> .column{
-							@include theWidth(4);
-							margin: $column_margin;
-							clear:none;
-
-							&:nth-child(4n){
-								margin-right: 0;
-								margin-left: $column_margin;
-								clear: none;
-							}
-
-							&:first-child,
-							&:nth-child(4n + 1){
-								margin-left: 0;
-								margin-right: $column_margin;
-								clear: left;
-							}
+						&:nth-child(3n){
+							margin-right: 0;
+							margin-left: $margin;
+							clear: none;
 						}
-					}
-				}
 
-				@media screen and (max-width:900px){
-					@if $i > 3 {
-						&:not([data-min-cols^="1111"]){
-							> .column{
-								@include theWidth(3);
-								margin: $column_margin;
-								clear:none;
-
-								&:nth-child(3n){
-									margin-right: 0;
-									margin-left: $column_margin;
-									clear: none;
-								}
-
-								&:first-child,
-								&:nth-child(3n + 1){
-									margin-left: 0;
-									margin-right: $column_margin;
-									clear: left;
-								}
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width:750px){
-					@if $i > 2 {
-						&:not([data-min-cols^="111"]){
-							> .column{
-								@include theWidth(2);
-								margin: $column_margin;
-								clear:none;
-
-								&:nth-child(2n){
-									margin-right: 0;
-									margin-left: $column_margin;
-									clear: none;
-								}
-
-								&:first-child,
-								&:nth-child(2n + 1){
-									margin-left: 0;
-									margin-right: $column_margin;
-									clear: left;
-								}
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width:550px){
-					&:not([data-min-cols^="11"]){
-						> .column{
-							width: 100%;
-							float: none;
-							margin: $column_margin 0% $column_margin 0% !important;
-							clear: both !important;
+						&:first-child,
+						&:nth-child(3n + 1){
+							margin-left: 0;
+							margin-right: $margin;
+							clear: left;
 						}
 					}
 				}
 			}
 		}
 
-		&.no-margin.count-#{$i}{
+		@media screen and (max-width:750px){
+			@if $nr_of_columns > 2 {
+				&:not([data-min-cols^="111"]){
+					> .#{$column_class}{
+						@include theWidth(2, $margin);
+						margin: $margin;
+						clear:none;
 
-			> .column{
-				margin: 0;
-				@include theWidth($i, 0);
+						&:nth-child(2n){
+							margin-right: 0;
+							margin-left: $margin;
+							clear: none;
+						}
+
+						&:first-child,
+						&:nth-child(2n + 1){
+							margin-left: 0;
+							margin-right: $margin;
+							clear: left;
+						}
+					}
+				}
 			}
+		}
 
-			&:not(.no-break){
-				@media screen and (max-width:900px){
-					@if $i > 4 {
-						> .column{
-							@include theWidth(4, 0);
-							margin: 0;
-
-							&:nth-child(4n){
-								margin-left: 0;
-							}
-
-							&:first-child,
-							&:nth-child(4n + 1){
-								margin-right: 0;
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width:900px){
-					@if $i > 3 {
-						&:not([data-min-cols^="1111"]){
-							> .column{
-								@include theWidth(3, 0);
-								margin: 0;
-
-								&:nth-child(3n){
-									margin-left: 0;
-								}
-
-								&:first-child,
-								&:nth-child(3n + 1){
-									margin-right: 0;
-								}
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width:750px){
-					@if $i > 2 {
-						&:not([data-min-cols^="111"]){
-							> .column{
-								@include theWidth(2, 0);
-								margin: 0;
-
-								&:nth-child(2n){
-									margin-left: 0;
-								}
-
-								&:first-child,
-								&:nth-child(2n + 1){
-									margin-right: 0;
-								}
-							}
-						}
-					}
-				}
-
-				@media screen and (max-width:550px){
-					&:not([data-min-cols^="11"]){
-						> .column{
-							width: 100%;
-							margin: 0% 0% 0% 0% !important;
-						}
-					}
+		@media screen and (max-width:550px){
+			&:not([data-min-cols^="11"]){
+				> .#{$column_class}{
+					width: 100%;
+					float: none;
+					margin: $margin 0% $margin 0% !important;
+					clear: both !important;
 				}
 			}
 		}
 	}
-}
 
-@mixin makeColumns($rowClass, $countClass, $columnClass){
-	@for $i from 2 through 10 {
-		#{$rowClass}{
+	&.no-margin{
 
-			&#{$countClass}#{$i}{
+		> .#{$column_class}{
+			margin: 0;
+			@include theWidth($nr_of_columns, 0);
+		}
 
-				> #{$columnClass}{
-					margin: $column_margin;
-					display: inline-block;
-					float: left;
-					position: relative;
-					@include theWidth($i);
+		&:not(.no-break){
+			@media screen and (max-width:900px){
+				@if $nr_of_columns > 4 {
+					> .#{$column_class}{
+						@include theWidth(4, 0);
+						margin: 0;
 
-					&:nth-child(#{$i}n){
-						margin-right: 0;
+						&:nth-child(4n){
+							margin-left: 0;
+						}
+
+						&:first-child,
+						&:nth-child(4n + 1){
+							margin-right: 0;
+						}
 					}
+				}
+			}
 
-					&.last-in-row{
-						margin-right: 0;
-					}
-
-					&:nth-child(#{$i}n + 1){
-						margin-left: 0;
-						clear: left;
-					}
-
-					&.first-in-row{
-						margin-left: 0;
-						clear: left;
-					}
-
-					@media screen and (max-width:900px){
-						@if $i > 3 {
-							@include theWidth(3);
-							margin: $column_margin;
-							clear:none;
+			@media screen and (max-width:900px){
+				@if $nr_of_columns > 3 {
+					&:not([data-min-cols^="1111"]){
+						> .#{$column_class}{
+							@include theWidth(3, 0);
+							margin: 0;
 
 							&:nth-child(3n){
-								margin-right: 0;
-								margin-left: $column_margin;
-								clear: none;
+								margin-left: 0;
 							}
 
 							&:first-child,
 							&:nth-child(3n + 1){
-								margin-left: 0;
-								margin-right: $column_margin;
-								clear: left;
+								margin-right: 0;
 							}
 						}
 					}
+				}
+			}
 
-					@media screen and (max-width:750px){
-						@if $i > 2 {
-							@include theWidth(2);
-							margin: $column_margin;
-							clear:none;
+			@media screen and (max-width:750px){
+				@if $nr_of_columns > 2 {
+					&:not([data-min-cols^="111"]){
+						> .#{$column_class}{
+							@include theWidth(2, 0);
+							margin: 0;
 
 							&:nth-child(2n){
-								margin-right: 0;
-								margin-left: $column_margin;
-								clear: none;
+								margin-left: 0;
 							}
 
 							&:first-child,
 							&:nth-child(2n + 1){
-								margin-left: 0;
-								margin-right: $column_margin;
-								clear: left;
+								margin-right: 0;
 							}
 						}
 					}
+				}
+			}
 
-					@media screen and (max-width:550px){
+			@media screen and (max-width:550px){
+				&:not([data-min-cols^="11"]){
+					> .#{$column_class}{
 						width: 100%;
-						float: none;
-						margin: $column_margin 0% $column_margin 0% !important;
-						clear: both !important
+						margin: 0% 0% 0% 0% !important;
 					}
 				}
 			}
 		}
 	}
+
+
+	@if ($insert_clear) {
+		&:after {
+			visibility: hidden;
+			display: block;
+			font-size: 0;
+			content: " ";
+			clear: both;
+			height: 0;
+		}
+		* html & {
+			zoom: 1;
+		}
+		*:first-child + html & {
+			zoom: 1;
+		}
+	}
 }
 
-/*
-* FLOATCONTAINER
-*/
-.row:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-}
-* html .row {
-	zoom: 1;
-}
-*:first-child+html .row {
-	zoom: 1;
+@for $i from 2 through 10 {
+	.row{
+		&.count-#{$i} {
+			@include make_columns('column', $i, false);
+		}
+
+		&:after {
+			visibility: hidden;
+			display: block;
+			font-size: 0;
+			content: " ";
+			clear: both;
+			height: 0;
+		}
+		* html & {
+			zoom: 1;
+		}
+		*:first-child + html & {
+			zoom: 1;
+		}
+	}
 }
