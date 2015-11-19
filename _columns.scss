@@ -51,7 +51,7 @@
 	}
 
 	&:not(.no-break){
-		@media screen and (max-width:900px){
+		@media screen and (max-width:$tablets){
 			@if $nr_of_columns > 4 {
 				> .#{$column_class}{
 					@include theWidth(4, $margin);
@@ -74,7 +74,7 @@
 			}
 		}
 
-		@media screen and (max-width:900px){
+		@media screen and (max-width:$tablets){
 			@if $nr_of_columns > 3 {
 				&:not([data-min-cols^="1111"]){
 					> .#{$column_class}{
@@ -99,7 +99,7 @@
 			}
 		}
 
-		@media screen and (max-width:750px){
+		@media screen and (max-width:$phones){
 			@if $nr_of_columns > 2 {
 				&:not([data-min-cols^="111"]){
 					> .#{$column_class}{
@@ -124,10 +124,10 @@
 			}
 		}
 
-		@media screen and (max-width:550px){
+		@media screen and (max-width:$phones){
 			&:not([data-min-cols^="11"]){
 				> .#{$column_class}{
-					width: 100%;
+					width: 100% !important;
 					float: none;
 					margin: $margin 0% $margin 0% !important;
 					clear: both !important;
@@ -144,7 +144,7 @@
 		}
 
 		&:not(.no-break){
-			@media screen and (max-width:900px){
+			@media screen and (max-width:$tablets){
 				@if $nr_of_columns > 4 {
 					> .#{$column_class}{
 						@include theWidth(4, 0);
@@ -162,7 +162,7 @@
 				}
 			}
 
-			@media screen and (max-width:900px){
+			@media screen and (max-width:$tablets){
 				@if $nr_of_columns > 3 {
 					&:not([data-min-cols^="1111"]){
 						> .#{$column_class}{
@@ -182,7 +182,7 @@
 				}
 			}
 
-			@media screen and (max-width:750px){
+			@media screen and (max-width:$phones){
 				@if $nr_of_columns > 2 {
 					&:not([data-min-cols^="111"]){
 						> .#{$column_class}{
@@ -202,7 +202,7 @@
 				}
 			}
 
-			@media screen and (max-width:550px){
+			@media screen and (max-width:$phones){
 				&:not([data-min-cols^="11"]){
 					> .#{$column_class}{
 						width: 100%;
