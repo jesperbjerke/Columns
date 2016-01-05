@@ -7,11 +7,11 @@ Options
 -------
 
 ### SASS Options/functions
-* $useMargin
+* $column_margin
   * _Sets the default margin to use around columns_
-* @include makeColumns($rowClass, $countClass, $columnClass)
-  * _create rows and columns from custom classes_
-  * _does not support extra classes like .no-break .no-margin .colspan-(int) etc_
+* @include make_columns($column_class, $nr_of_columns, $insert_clear: true, $margin: $column_margin)
+  * _core function that generates the css_
+  * _can be used independently to create rows and columns from custom classes or with separate margin and so on_
 
 ### Row classes:
 * .row
