@@ -1,7 +1,7 @@
 Columns
 =======
 
-Responsive column scss template, supports up to 10 columns (modifyable). It supports non CSS3-browser but needs extra classes in that case, see column classes below
+Responsive column scss template, supports up to 10 columns as default, but can easily be modified to an infinite number of columns. It supports non CSS3-browser but needs extra classes in that case, see column classes below
 
 Options
 -------
