@@ -33,9 +33,9 @@ Options
 * .column
   * _Defines the column element inside a row_
 * .first-in-row
-  * _Defines a column to be first in row, if you use a single row element with more columns than specified, you can use this class to set a new row. (clears left and left margin)_
+  * _Defines a column to be first in row. (clears left and left margin), required if <IE9 support is needed_
 * .last-in-row
-  * _Defines a column to be last in row (clears right and right margin)_
+  * _Defines a column to be last in row (clears right and right margin), required if <IE9 support is needed_
 * .colspan-(int)
   * _Defines a column to span over multiple columns_
 
