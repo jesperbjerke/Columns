@@ -54,18 +54,21 @@
 		@media screen and (max-width:$tablets){
 			@if $nr_of_columns > 4 {
 				> .#{$column_class}{
-					@include theWidth(4, $margin);
+					@include theWidth(5, $margin);
 					margin: $margin;
 					clear:none;
 
-					&:nth-child(4n){
+					&.last-in-row,
+					&:last-child,
+					&:nth-child(5n){
 						margin-right: 0;
 						margin-left: $margin;
 						clear: none;
 					}
 
+					&.first-in-row,
 					&:first-child,
-					&:nth-child(4n + 1){
+					&:nth-child(5n + 1){
 						margin-left: 0;
 						margin-right: $margin;
 						clear: left;
@@ -78,18 +81,21 @@
 			@if $nr_of_columns > 3 {
 				&:not([data-min-cols^="1111"]){
 					> .#{$column_class}{
-						@include theWidth(3, $margin);
+						@include theWidth(4, $margin);
 						margin: $margin;
 						clear:none;
 
-						&:nth-child(3n){
+						&.last-in-row,
+						&:last-child,
+						&:nth-child(4n){
 							margin-right: 0;
 							margin-left: $margin;
 							clear: none;
 						}
 
+						&.first-in-row,
 						&:first-child,
-						&:nth-child(3n + 1){
+						&:nth-child(4n + 1){
 							margin-left: 0;
 							margin-right: $margin;
 							clear: left;
@@ -103,18 +109,21 @@
 			@if $nr_of_columns > 2 {
 				&:not([data-min-cols^="111"]){
 					> .#{$column_class}{
-						@include theWidth(2, $margin);
+						@include theWidth(3, $margin);
 						margin: $margin;
 						clear:none;
 
-						&:nth-child(2n){
+						&.last-in-row,
+						&:last-child,
+						&:nth-child(3n){
 							margin-right: 0;
 							margin-left: $margin;
 							clear: none;
 						}
 
+						&.first-in-row,
 						&:first-child,
-						&:nth-child(2n + 1){
+						&:nth-child(3n + 1){
 							margin-left: 0;
 							margin-right: $margin;
 							clear: left;
@@ -232,7 +241,7 @@
 	}
 }
 
-@for $i from 2 through 10 {
+@for $i from 1 through 10 {
 	.row{
 		&.count-#{$i} {
 			@include make_columns('column', $i, false);
